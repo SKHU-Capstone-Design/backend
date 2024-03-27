@@ -20,4 +20,4 @@ jwt:
 
 logging:
   level:
-    org.springframework.security: DEBUGz
+    org.springframework.security: DEBUG

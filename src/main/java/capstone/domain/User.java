@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID", nullable = false)
     private Long id;
-    @Column(name = "USER_EAMIL", nullable = false)
+    @Column(name = "USER_EMAIL", nullable = false)
     private String email;
     @Column(name = "USER_NAME", nullable = false)
     private String name;
@@ -31,8 +31,16 @@ public class User {
     @Column(name = "USER_ROLE", nullable = false)
     private Role role;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "AVATAR_ID", referencedColumnName = "AVATAR_ID")
+    private Avatar avatar;
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
     @Builder
-    public User(String email, String password, String name, String gender, Integer age, String phone, Role role){
+    public User(String email, String password, String name, String gender, Integer age, String phone, Role role, Avatar avatar){
         this.email=email;
         this.password=password;
         this.name=name;
@@ -40,5 +48,6 @@ public class User {
         this.age=age;
         this.phone=phone;
         this.role=role;
+        this.avatar=avatar;
     }
 }

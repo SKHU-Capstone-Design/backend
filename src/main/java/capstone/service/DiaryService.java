@@ -1,5 +1,6 @@
 package capstone.service;
 
+import capstone.domain.Avatar;
 import capstone.domain.Diary;
 import capstone.domain.User;
 import capstone.dto.DiaryRequestDto;
@@ -20,6 +21,7 @@ public class DiaryService {
 
     private final DiaryRepository diaryRepository;
     private final UserRepository userRepository;
+    private final AvatarService avatarService;
 
     @Transactional
     public DiaryResponseDto createDiary(DiaryRequestDto diaryRequestDto, Long userId){
@@ -34,6 +36,8 @@ public class DiaryService {
                 .build();
 
         Diary savedDiary = diaryRepository.save(newDiary);
+        Avatar avatar = user.getAvatar();
+        avatar = avatarService.updateExp(avatar.getId(), 20);
         return savedDiary.toDto();
     }
 

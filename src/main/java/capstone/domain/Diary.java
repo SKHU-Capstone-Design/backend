@@ -36,12 +36,17 @@ public class Diary {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "AVATAR_ID")
+    private Avatar avatar;
+
     @Builder
-    public Diary( String title, User user, String body,String date){
+    public Diary( String title, User user, String body,String date, Avatar avatar){
         this.title=title;
         this.body=body;
         this.user=user;
         this.date=date;
+        this.avatar=avatar;
     }
 
     public DiaryResponseDto toDto(){

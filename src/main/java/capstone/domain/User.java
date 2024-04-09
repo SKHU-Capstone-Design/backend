@@ -39,6 +39,7 @@ public class User {
         this.avatar = avatar;
     }
 
+
     @Builder
     public User(String email, String password, String name, String gender, Integer age, String phone, Role role, Avatar avatar){
         this.email=email;

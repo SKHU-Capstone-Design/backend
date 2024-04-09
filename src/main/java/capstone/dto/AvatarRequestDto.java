@@ -1,5 +1,6 @@
 package capstone.dto;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

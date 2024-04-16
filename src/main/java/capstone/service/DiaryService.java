@@ -5,10 +5,14 @@ import capstone.domain.Diary;
 import capstone.domain.User;
 import capstone.dto.DiaryRequestDto;
 import capstone.dto.DiaryResponseDto;
+import capstone.dto.DiarySummaryDto;
 import capstone.repository.DiaryRepository;
 import capstone.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -52,4 +56,13 @@ public class DiaryService {
                 .map(Diary::toDto)
                 .collect(Collectors.toList());
     }
+    @Transactional
+    public Page<DiarySummaryDto> getDiaries(Pageable pageable) {
+        Page<Object[]> diaryPage = diaryRepository.findDiaries(pageable);
+        List<DiarySummaryDto> diaryDtos = diaryPage.stream()
+                .map(array -> new DiarySummaryDto((Long) array[0], (String) array[1]))
+                .collect(Collectors.toList());
+        return new PageImpl<>(diaryDtos, pageable, diaryPage.getTotalElements());
+    }
+
 }

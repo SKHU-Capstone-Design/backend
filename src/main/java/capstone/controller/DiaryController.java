@@ -2,9 +2,14 @@ package capstone.controller;
 
 import capstone.dto.DiaryRequestDto;
 import capstone.dto.DiaryResponseDto;
+import capstone.dto.DiarySummaryDto;
 import capstone.service.DiaryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,4 +61,20 @@ public class DiaryController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+    @GetMapping("/list")
+    public ResponseEntity<List<DiarySummaryDto>> getDiaries(@RequestParam(defaultValue = "0") int page) {
+        int pageSize = 10; // 한 페이지에 표시할 일기 수
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<DiarySummaryDto> diaryPage = diaryService.getDiaries(pageable);
+
+        // 현재 페이지가 마지막 페이지인지 확인하여 다음 페이지 번호를 계산
+        int nextPage = diaryPage.hasNext() ? page + 1 : -1;
+
+        // 클라이언트에게 다음 페이지 번호를 반환
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Next-Page", String.valueOf(nextPage));
+
+        return ResponseEntity.ok().headers(headers).body(diaryPage.getContent());
+    }
+
 }

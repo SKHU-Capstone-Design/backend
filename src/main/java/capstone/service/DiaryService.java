@@ -65,4 +65,15 @@ public class DiaryService {
         return new PageImpl<>(diaryDtos, pageable, diaryPage.getTotalElements());
     }
 
+    @Transactional
+    public DiaryResponseDto updateDiary(Long diaryId, DiaryRequestDto diaryRequestDto) {
+        Diary diaryToUpdate = diaryRepository.findById(diaryId)
+                .orElseThrow(() -> new RuntimeException("해당 ID의 일기를 찾을 수 없습니다."));
+
+        Diary updatedDiary = new Diary(diaryRequestDto.getTitle(), diaryRequestDto.getBody(), diaryRequestDto.getDate());
+        updatedDiary.setDiaryId(diaryId); // 업데이트할 일기의 ID 설정
+
+        Diary savedDiary = diaryRepository.save(updatedDiary);
+        return savedDiary.toDto();
+    }
 }

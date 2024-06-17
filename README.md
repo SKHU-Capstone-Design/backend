@@ -12,7 +12,7 @@ jpa와 spring security, spring develop tools, lombok, mysql Driver등을 사용�
 
 서버가 오류가 발생하여 직접 서버를 설치 해야한다면
 ![image](https://github.com/SKHU-Capstone-Design/backend/assets/129734272/5f287acf-5dc6-4412-aca0-57a57a5e2c80)
-JWT_SECURITY만 환경변수에 설정해 주시고 aws에 ec2를 이용해 서버 배포를 해주세요.
+JWT_SECRET만 환경변수에 설정해 주시고 aws에 ec2를 이용해 서버 배포를 해주세요.
 java와 mysql을 설치 하시고 
 ![image](https://github.com/SKHU-Capstone-Design/backend/assets/129734272/da1a2698-79e8-4585-9772-ecaf319e61b4)
 

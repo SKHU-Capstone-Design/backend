@@ -7,6 +7,7 @@ import capstone.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
+@Order(1)
 // SecurityConfig 클래스는 Spring Security의 설정을 관리하는 클래스입니다.
 
 public class SecurityConfig {

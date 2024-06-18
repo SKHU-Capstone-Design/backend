@@ -1,4 +1,4 @@
-AWS의 EC2에 서버는 배포가 되어있고 다음달까지 인스턴스는 실행되고 있을 예정입니다. 
+AWS의 EC2에 서버는 배포가 되어 있습니다.
 
 프론트 개발을 하고 있는 친구의 웹을 사용하시면 백엔드도 연결이 되어있습니다.
 
@@ -7,7 +7,7 @@ AWS의 EC2에 서버는 배포가 되어있고 다음달까지 인스턴스는 �
 만약 부득이 하게 서버에 오류가 발생하면 아래와 같이 배포해 주시면 감사하겠습니다.
 
 java 버전은 17을 사용했습니다.
-jpa와 spring security, spring develop tools, lombok, mysql Driver등을 사용하였습니다.
+Spring Data JPA와 Spring Security, Spring Boot DevTools, Lombok, MySQL Driver, Spring Web을 사용하였습니다.
 ![image](https://github.com/SKHU-Capstone-Design/backend/assets/129734272/4fa3bc2f-582e-42cb-9ae8-b75f1b637d93)
 
 서버가 오류가 발생하여 직접 서버를 설치 해야한다면
